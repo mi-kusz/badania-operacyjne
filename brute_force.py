@@ -21,7 +21,7 @@ def brute_force(G: list) -> tuple:
     best_solution_assignments = None
 
     for routes in generate_all_possibilites(len(G)):
-        cost, assignments = get_solution_cost(G, routes)
+        cost, assignments = get_solution_cost(G, routes, return_best_assignment=True)
 
         if cost < best_solution_cost:
             best_solution_cost = cost

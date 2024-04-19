@@ -1,18 +1,14 @@
-from utils import get_solution_cost
-from example import example_graph, random_solution
-from brute_force import brute_force
+from random_solution import example_graph
+from bees_algorithm import bees_algorithm
+import generators
 
 
 def main():
     G = example_graph()
 
-    #possible_solution = random_solution(G)
-    #print(f"Trasy: {possible_solution}")
+    cost, driver_routes = bees_algorithm(G, 15, 2, 2, generators.full_random, generators.full_random, 1, 1, 20)
 
-    #max_cost, driver_routes = get_solution_cost(G, possible_solution)
-    max_cost, driver_routes = brute_force(G)
-
-    print(f"Koszt rozwiązania: {max_cost}")
+    print(f"Koszt rozwiązania: {cost}")
     
     for index, routes in enumerate(driver_routes):
         print(f"Kierowca {index}: {routes}")

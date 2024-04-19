@@ -39,10 +39,7 @@ def calculate_route_cost(route: list, D: list) -> float:
     return cost
 
 
-def get_solution_cost(G: list, routes: list, drivers_number: int = 3) -> float:
-    #Obliczenie odległości każdy z każdym
-    D = floyd_warshall(G)
-
+def get_solution_cost(D: list, routes: list, drivers_number: int = 3, return_best_assignment: bool = False):
     #Posortowanie po długości trasy
     routes_with_costs = deque(sorted([(calculate_route_cost(x, D), x) for x in routes], reverse=True))
 
@@ -64,4 +61,7 @@ def get_solution_cost(G: list, routes: list, drivers_number: int = 3) -> float:
         pq.put((new_cost, driver))
         final_cost = max(final_cost, new_cost)
     
-    return final_cost, routes_drivers_assignment
+    if return_best_assignment:
+        return final_cost, routes_drivers_assignment
+    else:
+        return final_cost
