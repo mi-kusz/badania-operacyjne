@@ -23,6 +23,30 @@ def floyd_warshall(G: list) -> list:
     return D
 
 
+def floyd_warshall_paths(G: list) -> list:
+    n = len(G)
+    D = [[float('inf') for _ in range(n)] for _ in range(n)]
+    next = [[-1 for _ in range(n)] for _ in range(n)]
+
+    for i in range(n):
+        D[i][i] = 0
+        next[i][i] = -1
+    
+    for index, neighbors in enumerate(G):
+        for neighbor, weight in neighbors:
+            D[index][neighbor] = weight
+            next[index][neighbor] = neighbor
+    
+    for k in range(n):
+        for i in range(n):
+            for j in range(n):
+                if D[i][k] + D[k][j] < D[i][j]:
+                    D[i][j] = D[i][k] + D[k][j]
+                    next[i][j] = k
+    
+    return next
+
+
 def calculate_route_cost(route: list, D: list) -> float:
     cost = 0
 
