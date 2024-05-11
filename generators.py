@@ -47,4 +47,41 @@ def half_random(G, routes_src: list):
         result.append(routes)
     return result
 
+
+#Generator łączy trasy o długości 1 z trasami o długości 2, żeby jak najwięcej tras miało długość 3
+def enlarge_routes(G, routes):
+    routes = deepcopy(routes[1])
+    result = []
+
+    for _ in range(10):
+        short_routes = []
+        medium_routes = []
+        long_routes = []
+
+        #Podziel trasy ze względu na długość
+        for route in routes:
+            match len(route):
+                case 1:
+                    short_routes.append(route)
+                case 2:
+                    medium_routes.append(route)
+                case 3:
+                    long_routes.append(route)
+        
+        #Dopóki są krótkie trasy
+        while len(short_routes) > 0 and len(medium_routes) > 0:
+            give = random.choice(short_routes)
+            short_routes.remove(give)
+
+            take = random.choice(medium_routes)
+            medium_routes.remove(take)
+
+            index = random.randint(0, 2)
+            long_routes.append(take[:index] + give + take[index:])
+        
+        result.append(short_routes + medium_routes + long_routes)
+
+    return result
+
+
 #Generator rozwiązań przyjmuje graf i obecny podział tras jako listę (przykład: [[1, 2, 3]. [4, 5, 6]. [7]]). Powinien zwracać listę, która zawiera rozwiązania podobne do przekazanego jako .

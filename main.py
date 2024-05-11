@@ -7,7 +7,7 @@ from draw_solution import draw_solution
 def main():
     G = example_graph()
 
-    cost, driver_routes = bees_algorithm(G, 15, 2, 2, generators.full_random, generators.full_random, 1, 1, 20)
+    cost, driver_routes = bees_algorithm(G, 15, 2, 2, generators.enlarge_routes, generators.enlarge_routes, 1, 1, 20)
 
     print(f"Koszt rozwiązania: {cost}")
     
