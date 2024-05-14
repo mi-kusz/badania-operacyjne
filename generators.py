@@ -5,16 +5,17 @@ from copy import deepcopy
 NB_SIZE = 50
 
 
-def full_random(G, routes: list):
+def full_random(G: list, routes: list, solutions_to_generate: int) -> list:
     result = []
 
-    for _ in range(10):
+    for _ in range(solutions_to_generate):
         result.append(random_solution(G))
     return result
 
-def half_random(G, routes_src: list):
+
+def half_random(G, routes_src: list, solutions_to_generate: int):
     result = []
-    for i in range(NB_SIZE):
+    for i in range(solutions_to_generate):
         routes = deepcopy(routes_src[1])
         random_pair = random.sample([i for i in range(len(routes))], 2)
         route_A_idx = random_pair[0]
@@ -49,11 +50,11 @@ def half_random(G, routes_src: list):
 
 
 #Generator łączy trasy o długości 1 z trasami o długości 2, żeby jak najwięcej tras miało długość 3
-def enlarge_routes(G, routes):
+def enlarge_routes(G: list, routes: list, solutions_to_generate: int) -> list:
     routes = deepcopy(routes[1])
     result = []
 
-    for _ in range(10):
+    for _ in range(solutions_to_generate):
         short_routes = []
         medium_routes = []
         long_routes = []

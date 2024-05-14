@@ -63,7 +63,7 @@ def calculate_route_cost(route: list, D: list) -> float:
     return cost
 
 
-def get_solution_cost(D: list, routes: list, drivers_number: int = 3, return_best_assignment: bool = False):
+def get_solution_cost(D: list, routes: list, drivers_number: int, return_best_assignment: bool = False):
     #Posortowanie po długości trasy
     routes_with_costs = deque(sorted([(calculate_route_cost(x, D), x) for x in routes], reverse=True))
 
