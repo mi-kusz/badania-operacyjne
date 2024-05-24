@@ -85,4 +85,4 @@ def enlarge_routes(G: list, routes: list, solutions_to_generate: int) -> list:
     return result
 
 
-#Generator rozwiązań przyjmuje graf i obecny podział tras jako listę (przykład: [[1, 2, 3]. [4, 5, 6]. [7]]). Powinien zwracać listę, która zawiera rozwiązania podobne do przekazanego jako .
+#Generator rozwiązań przyjmuje graf i obecny podział tras jako listę (przykład: [[1, 2, 3]. [4, 5, 6]. [7]]). Powinien zwracać listę, która zawiera rozwiązania podobne do przekazanego jako parametr.
