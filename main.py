@@ -1,20 +1,21 @@
 from bees_algorithm import bees_algorithm
 from draw_solution import draw_solution
-import generators
 import pickle
+import utils
 
 
 def main():
     #Parametry (można dodać wczytywanie jako parametry programu)
-    scouts = 15
-    elite_places = 2
-    good_places = 2
-    elite_generator = generators.full_random
-    good_generator = generators.full_random
-    bees_per_elite_place = 2
-    bees_per_good_place = 2
-    iterations = 20
-    drivers = 3
+    args = utils.setup_parser().parse_args()
+    scouts = args.scouts
+    elite_places = args.elite_places
+    good_places = args.good_places
+    elite_generator = utils.generators_map[args.elite_generator]
+    good_generator = utils.generators_map[args.good_generator]
+    bees_per_elite_place = args.bees_per_elite_place
+    bees_per_good_place = args.bees_per_good_place
+    iterations = args.iterations
+    drivers = args.drivers
 
     graph_path = 'graphs/small_graph.data'
     with open(graph_path, 'rb') as f:

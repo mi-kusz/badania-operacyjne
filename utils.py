@@ -1,5 +1,24 @@
 from queue import PriorityQueue
 from collections import deque
+import argparse
+import generators
+
+
+generators_map = {1: generators.full_random, 2: generators.half_random, 3: generators.enlarge_routes}
+
+def setup_parser():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--scouts', type=int, help='Number of scouts', default=15)
+    parser.add_argument('--elite_places', type=int, help='Number of elite places', default=2)
+    parser.add_argument('--good_places', type=int, help='Number of good places', default=2)
+    parser.add_argument('--elite_generator', type=int, help='Elite generator: 1 - full random, 2 - half random, 3 - enlarge routes', default=1)
+    parser.add_argument('--good_generator', type=int, help='Good generator: 1 - full random, 2 - half random, 3 - enlarge routes', default=1)
+    parser.add_argument('--bees_per_elite_place', type=int, help='Number of bees per elite place', default=2)
+    parser.add_argument('--bees_per_good_place', type=int, help='Number of bees per good place', default=2)
+    parser.add_argument('--iterations', type=int, help='Number of iterations', default=20)
+    parser.add_argument('--drivers', type=int, help='Number of drivers', default=3)
+    return parser
+
 
 # Baza zawsze ma index 0, reszta to miasta
 
